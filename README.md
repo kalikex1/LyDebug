@@ -31,13 +31,15 @@ C:\> LyDebug32.exe --path d://Win32Project.exe
 [LyDebug] #
 [LyDebug] # SetBreakPoint --address 15667741
 [*] SetBreakPoint => 00EF121D
+[LyDebug] #
 [LyDebug] # SetBreakPoint --address 15667742
 [*] SetBreakPoint => 00EF121E
+[LyDebug] #
 [LyDebug] # SetBreakPoint --address 15667743
 [*] SetBreakPoint => 00EF121F
+[LyDebug] #
 [LyDebug] # SetBreakPoint --address 15667744
 [*] SetBreakPoint => 00EF1220
-[LyDebug] #
 ```
 
 **输出软件断点:** 输出当前设置过的软件断点，输出断点为地址和该地址处指令属性。
@@ -55,12 +57,16 @@ ID = 5   | Address = 00EF1220    | Code = 0              | Attribute = 1
 ```
 [LyDebug] # DelBreakPoint --address 15667740
 [-] DelBreakPoint => 00EF121C
+[LyDebug] #
 [LyDebug] # DelBreakPoint --address 15667741
 [-] DelBreakPoint => 00EF121D
+[LyDebug] #
 [LyDebug] # DelBreakPoint --address 15667742
 [-] DelBreakPoint => 00EF121E
+[LyDebug] #
 [LyDebug] # DelBreakPoint --address 15667743
 [-] DelBreakPoint => 00EF121F
+[LyDebug] #
 [LyDebug] # DelBreakPoint --address 15667744
 [-] DelBreakPoint => 00EF1220
 ```
@@ -72,6 +78,7 @@ ID = 5   | Address = 00EF1220    | Code = 0              | Attribute = 1
 [LyDebug] #
 [LyDebug] # SetMemBreakPoint --address 15667744 --flag r
 [*] SetMemBreakPoint => 00EF1220
+[LyDebug] #
 [LyDebug] # SetMemBreakPoint --address 15667748 --flag e
 [*] SetMemBreakPoint => 00EF1224
 ```
@@ -89,10 +96,42 @@ ID = 3   | Address = 00EF1224    | OldProtect = 1        | NewProtect = 4       
 ```
 [LyDebug] # DelMemBreakPoint --address 15667740
 [-] DelMemBreakPoint => 00EF121C
+[LyDebug] #
 [LyDebug] # DelMemBreakPoint --address 15667744
 [-] DelMemBreakPoint => 00EF1220
+[LyDebug] #
 [LyDebug] # DelMemBreakPoint --address 15667748
 [-] DelMemBreakPoint => 00EF1224
+```
+
+**设置硬件断点:** 硬件断点设置，需要传入断点的长度，以及该段点属性，硬件断点最多设置3个。
+```
+[LyDebug] # SetHbreakPoint --address 15667740 --len 4 --flag w
+[*] SetHBreakPoint => 00EF121C
+[LyDebug] #
+[LyDebug] # SetHbreakPoint --address 15667744 --len 4 --flag r
+[*] SetHBreakPoint => 00EF1220
+```
+
+**输出硬件断点:** 输出当前所有的硬件断点，此处输出的是Dr寄存器，如果为空则说明断点是空的。
+```
+[LyDebug] # ShowHbreakPoint
+  DR0 = 00EF121C
+W DR1 = 00EF1220
+R DR2 = 00000000
+  DR3 = 00000000
+```
+
+**清除硬件断点:** 清除指定寄存器内的数值，从而清空硬件断点。
+```
+[LyDebug] # DelHbreakPoint --dr 0
+[-] DelHBreakPoint
+[LyDebug] #
+[LyDebug] # DelHbreakPoint --dr 1
+[-] DelHBreakPoint
+[LyDebug] #
+[LyDebug] # DelHbreakPoint --dr 2
+[-] DelHBreakPoint
 ```
 
 
