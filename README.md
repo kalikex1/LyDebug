@@ -51,7 +51,49 @@ ID = 4   | Address = 00EF121F    | Code = 0              | Attribute = 1
 ID = 5   | Address = 00EF1220    | Code = 0              | Attribute = 1
 ```
 
+**清除软件断点:** 将软件断点从断点列表中移除，此处传入的参数也是十进制格式。
+```
+[LyDebug] # DelBreakPoint --address 15667740
+[-] DelBreakPoint => 00EF121C
+[LyDebug] # DelBreakPoint --address 15667741
+[-] DelBreakPoint => 00EF121D
+[LyDebug] # DelBreakPoint --address 15667742
+[-] DelBreakPoint => 00EF121E
+[LyDebug] # DelBreakPoint --address 15667743
+[-] DelBreakPoint => 00EF121F
+[LyDebug] # DelBreakPoint --address 15667744
+[-] DelBreakPoint => 00EF1220
+```
 
+**设置内存断点:** 设置内存断点，断点存在内存属性`r=读,w=写,e=执行`设置断点时属性也是必须加的。
+```
+[LyDebug] # SetMemBreakPoint --address 15667740 --flag w
+[*] SetMemBreakPoint => 00EF121C
+[LyDebug] #
+[LyDebug] # SetMemBreakPoint --address 15667744 --flag r
+[*] SetMemBreakPoint => 00EF1220
+[LyDebug] # SetMemBreakPoint --address 15667748 --flag e
+[*] SetMemBreakPoint => 00EF1224
+```
+
+**输出内存断点:** 输出当前所有的内存断点信息，内存断点`Protect`表示内存保护类型，`Attribute`是内存属性。
+```
+[LyDebug] # ShowMemBreakPoint
+
+ID = 1   | Address = 00EF121C    | OldProtect = 32       | NewProtect = 32      | Attribute = W
+ID = 2   | Address = 00EF1220    | OldProtect = 32       | NewProtect = 1       | Attribute = E
+ID = 3   | Address = 00EF1224    | OldProtect = 1        | NewProtect = 4       | Attribute = E
+```
+
+**清除内存断点:** 删除指定的内存断点，此处传入的是一个十进制数值。
+```
+[LyDebug] # DelMemBreakPoint --address 15667740
+[-] DelMemBreakPoint => 00EF121C
+[LyDebug] # DelMemBreakPoint --address 15667744
+[-] DelMemBreakPoint => 00EF1220
+[LyDebug] # DelMemBreakPoint --address 15667748
+[-] DelMemBreakPoint => 00EF1224
+```
 
 
 
