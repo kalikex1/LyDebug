@@ -22,6 +22,7 @@
 C:\> LyDebug32.exe --path d://Win32Project.exe
 [*] Loca EIP = 0x00EF121C
 [LyDebug] #
+[LyDebug] # Run
 ```
 
 **设置软件断点:** 对指定内存地址处写入CC指令设置软件断点，此处传入的是十进制格式。
