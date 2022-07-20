@@ -134,7 +134,57 @@ R DR2 = 00000000
 [-] DelHBreakPoint
 ```
 
+**反汇编当前行:** 该功能需要传入一个反汇编长度，会从当前EIP位置向下反汇编指定行。
+```
+[LyDebug] # Dissasembler --size 10
 
+00EF35D0 | 55                             | push ebp
+00EF35D1 | 8B EC                          | mov ebp, esp
+00EF35D3 | 83 EC 14                       | sub esp, 0x14
+00EF35D6 | C7 45 F4 00 00 00 00           | mov dword ptr [ebp - 0xc], 0
+00EF35DD | C7 45 F8 00 00 00 00           | mov dword ptr [ebp - 8], 0
+00EF35E4 | 81 3D 00 90 EF 00 4E E6 40 BB  | cmp dword ptr [0xef9000], 0xbb40e64e
+00EF35EE | 74 1F                          | je 0xef360f
+00EF35F0 | A1 00 90 EF 00                 | mov eax, dword ptr [0xef9000]
+00EF35F5 | 25 00 00 FF FF                 | and eax, 0xffff0000
+00EF35FA | 74 13                          | je 0xef360f
+```
+
+**StepOut 单步步过:** 执行StepOut单步走，遇到call不进入直接跳过。
+```
+[LyDebug] # Dissasembler --size 4
+00EF35D0 | 55                             | push ebp
+00EF35D1 | 8B EC                          | mov ebp, esp
+00EF35D3 | 83 EC 14                       | sub esp, 0x14
+00EF35D6 | C7 45 F4 00 00 00 00           | mov dword ptr [ebp - 0xc], 0
+[LyDebug] #
+[LyDebug] # StepOut
+[*] 命中断点: 00EF35D1
+[LyDebug] #
+[LyDebug] # Dissasembler --size 4
+00EF35D1 | 8B EC                          | mov ebp, esp
+00EF35D3 | 83 EC 14                       | sub esp, 0x14
+00EF35D6 | C7 45 F4 00 00 00 00           | mov dword ptr [ebp - 0xc], 0
+00EF35DD | C7 45 F8 00 00 00 00           | mov dword ptr [ebp - 8], 0
+```
+
+**StepIn 单步步入:** 执行StepIn步入，遇到call等会进入到call内部。
+```
+[LyDebug] # Dissasembler --size 4
+00EF35D1 | 8B EC                          | mov ebp, esp
+00EF35D3 | 83 EC 14                       | sub esp, 0x14
+00EF35D6 | C7 45 F4 00 00 00 00           | mov dword ptr [ebp - 0xc], 0
+00EF35DD | C7 45 F8 00 00 00 00           | mov dword ptr [ebp - 8], 0
+[LyDebug] #
+[LyDebug] # StepIn
+[*] 命中断点: 00EF35D3
+[LyDebug] #
+[LyDebug] # Dissasembler --size 4
+00EF35D3 | 83 EC 14                       | sub esp, 0x14
+00EF35D6 | C7 45 F4 00 00 00 00           | mov dword ptr [ebp - 0xc], 0
+00EF35DD | C7 45 F8 00 00 00 00           | mov dword ptr [ebp - 8], 0
+00EF35E4 | 81 3D 00 90 EF 00 4E E6 40 BB  | cmp dword ptr [0xef9000], 0xbb40e64e
+```
 
 
 
