@@ -164,8 +164,9 @@ R DR2 = 00000000
 00EF35FA | 74 13                          | je 0xef360f
 ```
 由于运用了`capstone`这款业内顶级反汇编引擎，所以我们的调试器完全支持针对64位进程的调试。
-```C
+```
 [LyDebug] # Dissasembler --size 10
+
 0x00007FF757C916A1 | 83 EC 28                       | sub esp, 0x28
 0x00007FF757C916A4 | E8 67 02 00 00                 | call 0x7ff757c91910
 0x00007FF757C916A9 | 48 83 C4 28                    | add rsp, 0x28
