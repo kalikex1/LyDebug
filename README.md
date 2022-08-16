@@ -163,6 +163,20 @@ R DR2 = 00000000
 00EF35F5 | 25 00 00 FF FF                 | and eax, 0xffff0000
 00EF35FA | 74 13                          | je 0xef360f
 ```
+由于运用了`capstone`这款业内顶级反汇编引擎，所以我们的调试器完全支持针对64位进程的调试。
+```C
+[LyDebug] # Dissasembler --size 10
+0x00007FF757C916A1 | 83 EC 28                       | sub esp, 0x28
+0x00007FF757C916A4 | E8 67 02 00 00                 | call 0x7ff757c91910
+0x00007FF757C916A9 | 48 83 C4 28                    | add rsp, 0x28
+0x00007FF757C916AD | E9 F2 FD FF FF                 | jmp 0x7ff757c914a4
+0x00007FF757C916B2 | CC                             | int3
+0x00007FF757C916B3 | CC                             | int3
+0x00007FF757C916B4 | 40 53                          | push rbx
+0x00007FF757C916B6 | 48 83 EC 20                    | sub rsp, 0x20
+0x00007FF757C916BA | 48 8B D9                       | mov rbx, rcx
+0x00007FF757C916BD | FF 15 6D 09 00 00              | call qword ptr [rip + 0x96d]
+```
 
 **StepOut 单步步过:** 执行StepOut单步走，遇到call不进入直接跳过。
 ```
