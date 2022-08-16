@@ -6,6 +6,10 @@
   
 ![image](https://user-images.githubusercontent.com/52789403/179908169-e5a9c576-8c79-4858-8b8b-f446319b8de8.png)
 
+<br>
+
+[![Build status](https://cdn.lyshark.com/archive/LyScript/build.svg)](https://github.com/lyshark/PeView) [![Crowdin](https://cdn.lyshark.com/archive/LyScript/email.svg)](mailto:me@lyshark.com)  [![Download x64dbg](https://cdn.lyshark.com/archive/peview/download.svg)](https://github.com/lyshark/PeView/releases) 
+
 </div>
 
 <br>
