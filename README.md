@@ -1,4 +1,4 @@
-# LyDebug PE 动态反汇编调试器
+# LyDebug 动态反汇编调试器
 
 <br>
 
@@ -6,17 +6,9 @@
   
 ![image](https://user-images.githubusercontent.com/52789403/179908169-e5a9c576-8c79-4858-8b8b-f446319b8de8.png)
 
-<br>
-
-[![Build status](https://cdn.lyshark.com/archive/LyScript/build.svg)](https://github.com/lyshark/PeView) [![Crowdin](https://cdn.lyshark.com/archive/LyScript/email.svg)](mailto:me@lyshark.com)  [![Download x64dbg](https://cdn.lyshark.com/archive/lydebug/download.svg)](https://github.com/lyshark/lydebug/releases) 
-
 </div>
 
 <br>
-<b>版本：1.0</b>
-<br>
-<b>发布日期：2020-05-25 21:00</b>
-<br><br>
 
 LyDebug 是一款使用C/C++语言开发实现的命令行应用层动态反汇编调试器，通过运用Windows系统下的调试API函数并配合Capstone反汇编引擎，完美实现了x86与x64程序的调试功能，该调试器目前功能包括寄存器查看修改，软硬件断点的设置删除以及遍历，单步步进步过操作，堆栈检查，内存检查等。
 
